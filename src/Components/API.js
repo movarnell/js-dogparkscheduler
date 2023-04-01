@@ -5,13 +5,12 @@ const ApiEndpoint = "https://6423a95c77e7062b3e364861.mockapi.io/dogpark/user";
 class Dogpark {
 
     // Define a method to get data from the API
-    get = async () => {
+    getUser = async () => {
         try {
             // Send a GET request to the API endpoint and wait for the response
             const resp = await fetch(ApiEndpoint);
             // Parse the response as JSON
-            const data = await resp.json();
-            // Return the data to the caller
+           const data = await resp.json();
             return data;
         } catch (e) {
             // If an error occurs, log the error message to the console
@@ -20,7 +19,7 @@ class Dogpark {
     };
 
     // Define a method to update an existing user in the API
-    put = async (users) => {
+    putUser = async (users) => {
         try {
             // Send a PUT request to the API endpoint with the user ID as part of the URL
             const resp = await fetch(`${ApiEndpoint}/${users.id}`, {
@@ -40,18 +39,21 @@ class Dogpark {
     };
 
     // Define a method to add a new user to the API
-    post = async (users) => {
+    postUser = async (users) => {
         try {
             // Send a POST request to the API endpoint with the new user data in the request body
-            const resp = await fetch(`${ApiEndpoint}`, {
+            const resp = await fetch(`${ApiEndpoint}/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(users),
             });
-            // Parse the response as JSON
-            return await resp.json();
+            const userData = await resp.json();
+            await this.getUser();
+            return userData;
+            
+            
         } catch (e) {
             // If an error occurs, log the error message to the console
             console.log("post did not work", e);
@@ -59,7 +61,7 @@ class Dogpark {
     }; 
 
     // Define a method to delete an existing user from the API
-    delete = async (id) => {
+    deleteUser = async (id) => {
         try {
             // Send a DELETE request to the API endpoint with the user ID as part of the URL
             const resp = await fetch(`${ApiEndpoint}/${id}`, {
