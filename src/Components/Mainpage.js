@@ -22,8 +22,8 @@ useEffect(() => {
         fetchUsers();
 }
 
-const updateUsers = async (updateUsers) => {
-        await API.putUser(updateUsers);
+const updateUsers = async (users) => {
+        await API.putUser(users);
         fetchUsers();
 }
 
