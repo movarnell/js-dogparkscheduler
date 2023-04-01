@@ -7,7 +7,7 @@ import Schedule from './Components/Schedule';
 import { getList } from './Components/API';
 
 function App() {
-  const [users, setUsers] = useState([]);
+ 
   getList(setUsers)
   return (
     <div className="container-fluid">
