@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { API } from "./API";
 
 
-export default function Entry({users, getUsers}) {
-console.log(users);
+
+export default function Entry({users, fetchUsers, createUser}) {
+console.log({users});
 
 const[isChecked, setIsChecked] = useState(false);
 
@@ -20,7 +20,8 @@ const handleSubmit= (event) => {
 
        console.log(anotherUser);  
        console.log(users)
-       API.postUser({...anotherUser}).then(console.log(users)).then(getUsers());
+        createUser({...anotherUser}).then(console.log(users)).then(fetchUsers());
+       
 }
 
 function handleCheckboxChange(event) {

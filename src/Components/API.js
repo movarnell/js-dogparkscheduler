@@ -30,8 +30,10 @@ class Dogpark {
                 // Include the updated user data in the request body as a JSON string
                 body: JSON.stringify(users),
             });
+            const data = await this.getUser();
+            console.log(data);
             // Parse the response as JSON
-            return await resp.json();
+            return resp;
         } catch (e) {
             // If an error occurs, log the error message to the console
             console.log('put did not work' , e)
