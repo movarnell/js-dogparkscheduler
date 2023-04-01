@@ -40,3 +40,11 @@
 .hiddenBlock{
   display: none;
 }
+
+.formWidth {
+  min-width: 300px;
+}
+
+.buttonIcon{
+  width: 30px;
+}

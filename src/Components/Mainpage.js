@@ -44,10 +44,10 @@ export default function Mainpage(){
   // Render the Entry and Schedule components, passing them necessary props
   return(
     <div className="row">
-      <div className="col">
+      <div className="col-lg-6 ">
         <Entry user={users} setUser={setUsers} fetchUsers={fetchUsers} createUser={createUser}/>
       </div>
-      <div className='col'>
+      <div className='col-lg-6'>
         <Schedule updateUsers={updateUsers} deleteUser={deleteUser} users={users} fetchUsers={fetchUsers} />
       </div>
     </div>

@@ -70,27 +70,30 @@ export default function Schedule({users, deleteUser, updateUsers}) {
     });
 
     return (
-        <div className="row lead fw-bold">
+        <div className="row ps-4">
             {/* This   part will used the sorted users, then the filter to show just users that have a time that has not passed. Then it will show the users whose time is nearest to now. */}
             {sortedUsers.filter(user => new Date(user.date) > now).map((user) => (
-                <div key={user.id} className="m-3 p-3">
+                <div key={user.id} >
                     {/* Then we format the date using the parameters we listed above in the options, and update based off the user id. */}
-                    {formatDate(editingUserId === user.id ? updatedDate : user.date)} <hr />
-                    Owner: {user.name}, Dog: {user.dogName}<br />
-                    My dog is <span className="fw-bold text-warning bg-dark">{user.friendly ? "NOT" : ""}</span> friendly.
+                   <span className="display-6 fw-bold"> {formatDate(editingUserId === user.id ? updatedDate : user.date)} </ span>< br/>
+                    <div className="fw-bold">{user.name}<br />
+                     Bringing:  {user.dogName}</div>
+                    My dog is <span className="fw-bold text-danger">{user.friendly ? "NOT" : ""} </span>dog friendly.
                    {/* The following will show the edit inputs only for the user.id selected.  */}
                     {editingUserId === user.id && (
-                        <>
-                            <br />
+                        <div className="shadow border border-1 border-dark rounded-3 p-2">
+                            
                             <label htmlFor="updatedDate">New Date & Time:</label>
+                            <br />
                             <input type="datetime-local" id="updatedDate" value={updatedDate} onChange={handleDateChange} />
                             <br />
-                            <button type="button" onClick={() => handleSave(user)} className="btn btn-outline-primary m-1">Save</button>
-                        </>
+                            <button type="button" onClick={() => handleSave(user)} className="btn btn-primary m-1">Save</button>
+                        </div>
                     )}
                     <br />
-                    <button type="button" onClick={() => handleEdit(user.id)} className="btn btn-outline-primary m-1">{editingUserId === user.id ? "Cancel" : "Edit Time"}</button>
-                    <button type="button" className="btn btn-danger m-1" onClick={() => deleteUser(user.id)}>Delete</button>
+                    <button type="button" onClick={() => handleEdit(user.id)} className="btn btn-outline-primary m-1 mt-3">{editingUserId === user.id ? "Cancel" : "Edit Time"}</button>
+                    <button type="button" className="btn btn-danger m-1 mt-3" onClick={() => deleteUser(user.id)}>Delete</button>
+                    <hr />
                 </div>
             ))}
         </div>
